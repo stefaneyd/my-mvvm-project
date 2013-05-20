@@ -19,3 +19,15 @@ In 2005 a gentleman named John Gossman, who at the time was one of the WPF and S
     * Identical to PM pattern
     * Dependent on WPF/Silverlight
 In 2008 John changes his mind, he realised that the !ModelViewViewModel pattern is identical to Fowlers Presentation Model, and that both patterns feature an abstraction of a view which contains a view state and behavior. Fowler introduced the Presentation Model pattern as a means of creating a UI platform independent abstraction of a view, where as Gossman introduced the !ModelViewViewModel pattern as a standardised way to leverage core features of WPF and Silverlight. Meaning that the !ModelViewViewModel design pattern is tailor made and specific to the WPF and Silverlight platforms.
+
+= Intent =
+  * Separate concerns
+    * View
+    * View's state and behavior
+    * Data
+  * Unit Testing & UI Testing
+  * Maintenance
+  * Extensibility
+  * Enables the designer/developer workflow
+  * Take advantage of WPF/Silverlight data binding
+So what exactly does the !ModelViewViewModel design pattern really do for us, for one it helps the developers separate the concerns of the view the view state and behavior and the underlying data. It also allows for unit testing of the application as well as UI testing. Most would agree that maintenance is the number one cost in the software development lifecycle, add a new feature here, add a new feature there, make a change, modify this, modify that. Well we want to be able to do that throughout the entire lifecycle of the application but we don't want to break anything and we want to make it easy to actually implement these features or make those changes. It also helps developers and designers work together with less technical difficulties, in the past there has always been friction between the designers and the developers, you know who is touching my UI and who is touching my code. Well now you can split the two teams more easily, you don't get a lot of that budding heads that you used to get, you know designers can go and create this awesome beautiful user interface without ever having to know what the developer is doing, the designer just needs to know the data points that they are going to exposing to the user and the programmer doesn't have to know what the designer is doing, he doesn't care he is just coding to the functionality of the applications requirements. The single most important aspect that the !ModelViewViewModel pattern relyse on is the data binding infrastructure in WPF and Silverlight.By binding elements of a view to a viewModle you get very loose coupling between the two, and your entirely remove the need for writing code in a views code behind or in a viewModel that would directly update a view. The data binding system also supports input validation, which provides a standardized way of transmitting validation errors to the view.
