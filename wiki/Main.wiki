@@ -1,0 +1,21 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+In this module we are going to discuss the !ModelViewViewModel otherwise known as the MVVM design pattern. The !ModelViewViewModel design pattern facilitates modern development techniques such as separation of concerns, unit testing and test driven development. As with most design patterns the !ModelViewViewModel design pattern is just a set of guidelines that when you follow them it makes it easier to write applications. Use them where they makes sense and modify them to fit the needs of your application at a given point in time.
+  * Where did MVVM come from?
+  * What is MVVM?
+  * Components of MVVM
+  * Implementation
+
+= History =
+  * 2004 Martin Fowler - Presentation Model (PM)
+    * Separates a view from it's state and behavior
+    * Not dependent on a specific UI framework
+In 2004 a gentleman named Martin Fowler published an article that describes a design pattern called the presentation model. In this article he explains that the Presentation Model design pattern is similar to the MVP or the Model View Presenter pattern in that it separates a view from its behavior and state. Specifically the Presentation Model pulls the state and behavior out of the view and into a model class. It coordinates with the domain layer and provides an interface to the view. The presentation model frequently updates its view so that the two stay in sync with each other, that synchronization logic exists as code in the presentation model classes. One thing to note about the presentation model pattern, it is not specific to any UI framework.
+  * 2005 John Gossman unveiled the MVVM pattern
+    * Variation of MVC pattern
+In 2005 a gentleman named John Gossman, who at the time was one of the WPF and Silverlight architects at microsoft, unveiled the !ModelViewViewModel pattern in his blog. In the blog he described the !ModelViewViewModel as a variation of the Model View Controller but its tailored for the modern UI development platforms where the view is the responsibility of a designer rather than a developer.
+  * 2008 John changes his mind
+    * Identical to PM pattern
+    * Dependent on WPF/Silverlight
+In 2008 John changes his mind, he realised that the !ModelViewViewModel pattern is identical to Fowlers Presentation Model, and that both patterns feature an abstraction of a view which contains a view state and behavior. Fowler introduced the Presentation Model pattern as a means of creating a UI platform independent abstraction of a view, where as Gossman introduced the !ModelViewViewModel pattern as a standardised way to leverage core features of WPF and Silverlight. Meaning that the !ModelViewViewModel design pattern is tailor made and specific to the WPF and Silverlight platforms.
