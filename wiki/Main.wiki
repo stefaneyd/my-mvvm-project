@@ -46,3 +46,115 @@ Lets create a simple MVVM application. Lets start off by creating a new Silverli
 <img src="http://s13.postimg.org/ubanyv9t3/the_model.png" width="800px" />
 <br />
 The model is the data and you can look at the model from two different perspectives, there is the object oriented approach where your model may be represented by domain specific objects, or you can use the data centric approach where your model may be a XML file or a data access layer or anything else that is responsible for communicating with the data store. Either way the models purpose is to represent the data points and it has no knowledge of where it will be presented or how it will be presented. It's singel responsibility is to represent the data points. On the image we have a person object with two properties, this person object implements two interfaces the INotifyPropertyChanged interface which is responsible for notifying the UI or presentation layer of any changes made to a properties value, the IDataErrorInfo interface is used to notify the UI if a validation role has failed against one of those properties.
+
+= Demo: Creating the Model =
+We start by giving our person model object some properties that we are going to be binding our UI to. Person normally has a first name, and a last name and at some point we are going to update our person so lets give it a DateTime property named !UpdatedDate. In order to let my UI know that any of these property values change we are going to have to implement an interface INotifyPropertyChanged. The implementation is simple we are going to have a public method that takes a string parameter.
+{{{
+public event PropertyChangedEventHandler PropertyChanged;
+public void OnPropertyChanged(string property)
+{
+  if(PropertyChanged != null)
+    PropertyChanged(this, new PropertyChangedEventArgs(property));
+}
+}}}
+Now that we have implemented the interface we need to modify our properties so when they do change we can let them know.
+{{
+private string _FirstName;
+public string FirstName
+{
+  get { return _FirstName; }
+  set
+  {
+    _FirstName = value;
+    
+    //Add this code to the properties so we can know when the property changes
+    OnPropertyChanged("FirstName");
+  }
+}
+}}
+Now our properties are firing the !PropertyChangedEvent when the value changes. This allows the view to display any changes that have been made to the underlying objects properties. Now we got to worry about something else, we got to worry about validation, how do I send validation errors up to my view? This is accomplished by implementing the IDataErrorInfo interface. For the Error property we are going to return null. This is the objects level error, so we would set this for the objects level validation.
+{{{
+public string Error
+{
+  get { return null; }
+}
+}}}
+We are going to keep the validation on our Person object pretty simple, so we are just going to validate that the first name has been entered.
+{{{
+public string this{string columnName]
+{
+  get
+  {
+    string error = string .Empty;
+
+    if(string.isNullOrEmpty(_FirstName))
+      error = "First Name is required";
+
+    return error;
+  }
+}
+}}}
+Now anytime this validation error fails my UI will be notified thru the IDataErrorInfo interface and send a notification to the user.
+
+*Person class*
+{{{
+public class Person : INotifyPropertyChanged, IDataErrorInfo 
+{
+  private string _FirstName
+  public string FirstName
+  {
+    get { return _FirstName; }
+    set
+    {
+      _FirstName = value;
+      OnPropertyChanged("FirstName");
+    }
+  }
+
+  private string _LastName
+  public string LastName
+  {
+    get { return _LastName; }
+    set
+    {
+      _LastName = value;
+      OnPropertyChanged("LastName");
+    }
+  }
+
+  private DateTime _UpdateDate;
+  public DateTime UpdateDate
+  {
+    get { return _UpdateDate; }
+    set
+    {
+      _UpdateDate = value;
+      OnPropertyChanged("UpdateDate");
+    }
+  }
+
+  public event PropertyChangedEventHandler PropertyChanged;
+  public void OnPropertyChanged(string property)
+  {
+    if(PropertyChanged != null)
+      PropertyChanged(this, new PropertyChangedEventArgs(property));
+  }
+
+  public string Error
+  {
+    get { return null; }
+  }
+  public string this{string columnName]
+  {
+    get
+    {
+      string error = string .Empty;
+
+      if(string.isNullOrEmpty(_FirstName))
+        error = "First Name is required";
+
+      return error;
+    }
+  }
+}
+}}}
