@@ -158,3 +158,9 @@ public class Person : INotifyPropertyChanged, IDataErrorInfo
   }
 }
 }}}
+
+= The ViewModel =
+
+<img src="http://s14.postimg.org/rsph57ru9/View_Model.png" width="800px" />
+<br />
+You may be wondering what exactly goes into a viewModel if my data and its data points are in the model but the viewModel contains properties commands and other abstractions to facilitate communication between the view and the model. What does this mean? Well it means that the viewModel will have properties that expose instances of your model objects it will also have commands or events that interact with the view to respond to any type of user interaction at a minimum you want your viewModel to implement the INotifyPropertyChanged interface. this is because your view will be bound to your viewModel and the INotifyPropertyChanged interface is the mechanism which pushes data up to the view. As you can see we have a viewModel called !MainViewModel, it exposes a property of type Person, and this is the Person domain object that was in our view slide. We are exposing an instance of that Person object to our view. And any time the Person object instance changes the view will be notified of that change and update accordingly. There has been some debate recently about what your viewModel should inherit from. A lot of people have their viewModels inherit from !DependencyObject or UI element. Although the viewModel manages the state and behaviour of the view it should not have dependency on a UI base object, basicly you do not want any control related objects in your viewModel.
