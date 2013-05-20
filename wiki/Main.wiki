@@ -204,3 +204,8 @@ private void LoadPerson()
   };
 }
 }}}
+
+= The View =
+<img src="http://s23.postimg.org/vjgpkhijf/The_view.png" width="800px" />
+<br />
+The view is simply the visual display, it consists of all the elements displayed by the user interface such as buttons and windows and graphics and all the other controls that we know and love. The view is responsible for displaying data and collecting data from users. It is not responsible for retrieving data, business logic, business rules or validation. In WPF and Silverlight the view contains binding extensions that identify the data points that will be represented to the user. The bindings point to the names of the data point properties. But they don't have awareness of where those properties are or where they come from. The bindings are activated when the views dataContext is set to a class that contains the source for the bindings. It is that data binding infrastructure that is build in to WPF and Silverlight that allows designers to create rich and very interactive user interfaces without ever having to know the details or specifics of where the data points come from.
