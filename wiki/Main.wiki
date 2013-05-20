@@ -48,7 +48,7 @@ Lets create a simple MVVM application. Lets start off by creating a new Silverli
 The model is the data and you can look at the model from two different perspectives, there is the object oriented approach where your model may be represented by domain specific objects, or you can use the data centric approach where your model may be a XML file or a data access layer or anything else that is responsible for communicating with the data store. Either way the models purpose is to represent the data points and it has no knowledge of where it will be presented or how it will be presented. It's singel responsibility is to represent the data points. On the image we have a person object with two properties, this person object implements two interfaces the INotifyPropertyChanged interface which is responsible for notifying the UI or presentation layer of any changes made to a properties value, the IDataErrorInfo interface is used to notify the UI if a validation role has failed against one of those properties.
 
 = Demo: Creating the Model =
-We start by giving our person model object some properties that we are going to be binding our UI to. Person normally has a first name, and a last name and at some point we are going to update our person so lets give it a DateTime property named !UpdatedDate. In order to let my UI know that any of these property values change we are going to have to implement an interface INotifyPropertyChanged. The implementation is simple we are going to have a public method that takes a string parameter.
+We start by giving our person model object some properties that we are going to be binding our UI to. Person normally has a first name, and a last name and at some point we are going to update our person so lets give it a !DateTime property named !UpdatedDate. In order to let my UI know that any of these property values change we are going to have to implement an interface INotifyPropertyChanged. The implementation is simple we are going to have a public method that takes a string parameter.
 {{{
 public event PropertyChangedEventHandler PropertyChanged;
 public void OnPropertyChanged(string property)
@@ -58,7 +58,7 @@ public void OnPropertyChanged(string property)
 }
 }}}
 Now that we have implemented the interface we need to modify our properties so when they do change we can let them know.
-{{
+{{{
 private string _FirstName;
 public string FirstName
 {
@@ -71,7 +71,7 @@ public string FirstName
     OnPropertyChanged("FirstName");
   }
 }
-}}
+}}}
 Now our properties are firing the !PropertyChangedEvent when the value changes. This allows the view to display any changes that have been made to the underlying objects properties. Now we got to worry about something else, we got to worry about validation, how do I send validation errors up to my view? This is accomplished by implementing the IDataErrorInfo interface. For the Error property we are going to return null. This is the objects level error, so we would set this for the objects level validation.
 {{{
 public string Error
