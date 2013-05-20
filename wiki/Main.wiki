@@ -43,5 +43,6 @@ Lets create a simple MVVM application. Lets start off by creating a new Silverli
 <br />
 
 = The Model =
-<img src="http://s13.postimg.org/ubanyv9t3/the_model.png" width="600px" />
+<img src="http://s13.postimg.org/ubanyv9t3/the_model.png" width="800px" />
+<br />
 The model is the data and you can look at the model from two different perspectives, there is the object oriented approach where your model may be represented by domain specific objects, or you can use the data centric approach where your model may be a XML file or a data access layer or anything else that is responsible for communicating with the data store. Either way the models purpose is to represent the data points and it has no knowledge of where it will be presented or how it will be presented. It's singel responsibility is to represent the data points. On the image we have a person object with two properties, this person object implements two interfaces the INotifyPropertyChanged interface which is responsible for notifying the UI or presentation layer of any changes made to a properties value, the IDataErrorInfo interface is used to notify the UI if a validation role has failed against one of those properties.
