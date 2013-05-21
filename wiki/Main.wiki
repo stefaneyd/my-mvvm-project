@@ -274,8 +274,8 @@ I mentioned earlier that to create the connection between the view and the viewM
   * and more... -  I guess what I'm trying to say is there are many many ways to create the binding between the view and the viewModel, you should just use your favorite search engine to try and find the approach that fits your programming style and your applications needs.
 
 = Communication Between the View and !ViewModel =
-As mentioned before communication between the view and the viewModel can be accomplished in a couple of different ways. The two most common approaches are by using events and commands. Commands are similar to events except you can associate any number of UI controls or input gestures to a command, and binde that command to a handler that is executed when the controls are activated or gestures are performed. commands also keep track of whether or not they are available, if a command is disabled all UI elements associated with that command are disabled as well. The code that executes when the command is invoked will be located in the commands Execute event handler. The code that determines if the command can or can not be invoked will be located in the commands CanExecute event handler
+As mentioned before communication between the view and the viewModel can be accomplished in a couple of different ways. The two most common approaches are by using events and commands. Commands are similar to events except you can associate any number of UI controls or input gestures to a command, and binde that command to a handler that is executed when the controls are activated or gestures are performed. commands also keep track of whether or not they are available, if a command is disabled all UI elements associated with that command are disabled as well. The code that executes when the command is invoked will be located in the commands Execute event handler. The code that determines if the command can or can not be invoked will be located in the commands !CanExecute event handler
   *Events
   * Commands
     * Execute
-    * CanExecute
+    * !CanExecute
