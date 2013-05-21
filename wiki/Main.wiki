@@ -340,3 +340,8 @@ private void UpdatePerson()
   ModelPerson.UpdatedDate = Datetime.Now;
 }
 }}}
+
+= Collaboration =
+This may be a little bit of review, but now that we have an understanding of each of the different components of the !ModelViewViewModel triad, lets discuss a little bit of how these different components collaborate with one another. The viewModel is responsible for the state and behaviour of the view and it acts as a facade to the underlying model think of the viewModel as the middleman between the view and the model. It is responsible for sending model information to the view and view information back to the model. The viewModel is nothing more than abstraction of the view's code behind, except that the viewModel has no hard dependency on any view. This makes it possible to reuse a viewModel across multiple views and even multiple platforms. The view binds to properties on a viewModel which in turn exposes data contained in model objects and other state that are specific to the view. The binding between the view and viewModel are simple to construct because all you have to do is set the dataContext of a view to an instance of a viewModel object. I want to reiterate that your viewModel must implement the INotifyPropertyChanged interface, because if property values change in the viewModel those new values will automatically propagate it to the view via data binding. And that will only happen if your viewModel implements the INotifyPropertyChanged interface. When the user click a button in the view a command on the viewModel executes to perform the requested action. It is the viewModel, never the view that performs all modifications made to the model.
+
+<img src="http://s21.postimg.org/ydc051fyv/collaboration.png" width="800px" />
