@@ -359,3 +359,19 @@ This may be a little bit of review, but now that we have an understanding of eac
     * Lack of standardization
     * Specific to WPF and Silverlight platforms
 So what are some of the consequences we see when we use the !ModelViewViewModle design pattern. For one, we reduce code-behind by abstracting the view out into a viewModel, we eliminate most, if not all of the view's code-behind. The model does not need to change to support a view, we can create a new viewModel or modify an existing one to present data points to the user differently depending on application requirements. Designers get to design, coders get to code, this supports simultaneous development, while designers are creating views and rich user interfaces, the programmers are writing the core code and business logic, this also reduces development time because the work is being done simultaneously. Of course using the !ModelViewViewModel pattern you have to create more files. This bothers some people more than others. To me I think its a great way to help keep my project organised and structured well. Simple tasks can be complicated to perform, such as setting focus to an element in the view, there is a lack of standardisation, but I really don't see this as a con but I listed it as one due to the feedback I have received from the WPF/Silverlight community. My view is that the MVVM pattern is just that it is a pattern. It is just a set of guidelines to help facilitate abstraction to my applications. You could almost consider this a positive, since the pattern is flexible enough to meet anyone's needs and can be implemented in so many ways. And once again I mention this a few times but it is specific to the WPF and Silverlight platforms. I guess if you were not using this pattern in a WPF or a Silverlight platform you would be calling it the presentation model.
+
+= Known Uses =
+  * Microsoft
+  * UFC Gym
+  * US Army
+  * Family.Show
+  * PRISM Reference Implementation
+  * AQUA
+  * Many frameworks
+    * MVVM Light Toolkit
+    * Caliburn
+    * Cinch
+    * Onyx
+    * MVVM Foundation
+    * And more...
+If you are interested in who is actually using this pattern, just to name a few.
