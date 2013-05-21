@@ -1,4 +1,6 @@
 #summary One-sentence summary of this page.
+*Table of Contents*
+
 <wiki:toc max_depth="1" />
 
 = Introduction =
