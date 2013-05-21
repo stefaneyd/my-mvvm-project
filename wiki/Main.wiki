@@ -375,3 +375,9 @@ So what are some of the consequences we see when we use the !ModelViewViewModle 
     * MVVM Foundation
     * And more...
 If you are interested in who is actually using this pattern, just to name a few.
+
+= Related Patterns =
+  * Model View Presenter (MVP)
+  * Model View Controller (MVC)
+  * Presentation Model (PM)
+Here are some of the related patterns to the !ModelViewViewModel design pattern. These patterns like the MVVM pattern are considered view separation design pattern. We have the Model view Presenter, the Model view Controller, both of which we will have modules in our ondemand library so you can learn more about those. And then I've already mentioned and described a little bit about the Presentation Model, for more information on that you can go to Martin Fowler website or search on you favorite search engine.
