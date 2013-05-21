@@ -209,3 +209,56 @@ private void LoadPerson()
 <img src="http://s23.postimg.org/vjgpkhijf/The_view.png" width="800px" />
 <br />
 The view is simply the visual display, it consists of all the elements displayed by the user interface such as buttons and windows and graphics and all the other controls that we know and love. The view is responsible for displaying data and collecting data from users. It is not responsible for retrieving data, business logic, business rules or validation. In WPF and Silverlight the view contains binding extensions that identify the data points that will be represented to the user. The bindings point to the names of the data point properties. But they don't have awareness of where those properties are or where they come from. The bindings are activated when the views dataContext is set to a class that contains the source for the bindings. It is that data binding infrastructure that is build in to WPF and Silverlight that allows designers to create rich and very interactive user interfaces without ever having to know the details or specifics of where the data points come from.
+
+= Demo: Creating the View =
+Now that we have our viewModel finished up lets go ahead and start our view.
+
+Here we have a basic view to display our data points, and that is where we put on our designer hat and I have no idea what the programmers are doing, all I have to focus on is creating a rich UI that the users are going to interact with, but I do know the data points that I'm expecting I know the First Name text box is designated for a !FirstName property, so I'm going to set my text to bind to the !ModelPerson.!FirstName, and I'm gonna do that for the other properties to. I'm also aware that the firstName has validation rules applied to it. So to enable those I'm going to set the !ValidatesOnDataErrors=True. Now the designers part is finished and time for the programmers turn. And now he is going to hook up the viewModel to this view. We need to begin by adding a namespace, this namespace is the location where our viewModel exists {{{ xmlns:local="Clr-namespace:SimpleMvvm" }}} for demonstration purpose we are going to create the viewModel as a resource and use the static resource data binding syntax to set the datacontext of the view. We need to give it a Key that is how we reference it. Now we have to set the dataContext to that resource
+{{{
+<UserControl.Resources>
+  <local:MainViewModel x:key="MainViewModel" />
+</UserControl.Resources>
+}}}
+{{{
+<Grid x:Name="LayoutRoot" Margin="50" DataContext="{StaticResource MainViewModel}" >
+}}}
+And that should do it, we should see the data if we run the program. You can now notice that in the designer you can actually see the data that I was going to load at runtime, if you remember early in the module we discussed a concept called blendability, the ability to see design time data. So by using the XAML approach for creating my viewModel I have actually enabled design time data, what is happening is my view is creating an instance of that viewModel at design time and it is newing up that object for me so I can see the underlying data as it exists now. In Silverlight you have to specify the mode in which your data binding will behave, !TwoWay meaning that any changes that I make from the UI perspective will be pushed down to the underlying data model as well as being pushed up.
+{{{
+Text="{Binding ModelPerson.LastName, Mode=TwoWay}"
+}}}
+
+And here is how the view looks:
+{{{
+<UserControl x:Class="SimpleMvvm.MainPage"
+	     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/persentation"
+	     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	     mc:Ignorable="d"
+	     d:DesignHeight="300" d:DesignWidth="400">
+  <Grid x:Name="LayoutRoot" Margin="50">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto />
+      <ColumnDefinition />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+
+    <!-- First Name -->
+    <TextBlock text="First Name:" Margin="5" />
+    <TextBox Grid.Column="1" Margin="5" Text="{Binding ModelPerson.FirstName, Mode=TwoWay, ValidatesOnDataErrors=True}" />
+
+    <!-- Last Name -->
+    <TextBlock Grid.Row="1" Text="Last Name:" Margin="5" />
+    <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding ModelPerson.LastName, Mode=TwoWay}" />
+
+    <!-- Last Updated -->
+    <TextBlock Grid.Row="2" Text="Last Updated:" Margin="5" />
+    <textBox Grid.Row="2" Grid.Column="1" Margin="5" Text="{Binding ModelPerson.UpdatedDate}" />
+  </Grid>
+</UserControl>
+}}}
