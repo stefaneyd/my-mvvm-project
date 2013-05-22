@@ -288,7 +288,7 @@ I'm gonna put my designer hat on one more time and say that I have another requi
 
 {{{
 <!-- Save Button -->
-<Button Grid.Row="3" Grid.ColumnSpan="2" Content="Save" Margin="10" Command="{SavePersonCommand}" />
+<Button Grid.Row="3" Grid.ColumnSpan="2" Content="Save" Margin="10" Command="{Binding SavePersonCommand}" />
 
 public class SavePersonCommand : ICommand
 {
